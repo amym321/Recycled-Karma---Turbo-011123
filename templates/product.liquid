@@ -1,0 +1,23 @@
+{% comment %}
+  The contents of the product.liquid template can be found in /sections/product-template.liquid
+{% endcomment %}
+
+{% section 'product-template' %}
+<!--Start Stamped.io Auto Installation--><div id="stamped-main-widget" class="stamped-main-widget" data-widget-style="standard" data-product-id="{{ product.id }}" data-name="{{ product.title | escape }}" data-url="{{ shop.url }}{{ product.url }}" data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" data-description="{{ product.description | escape }}" data-product-sku="{{product.handle}}" data-product-type="{{product.type}}">{{ product.metafields.stamped.reviews }}</div><!--End Stamped.io Auto Installation-->
+
+
+<!--  VIA OUT OF STOCK SCRIPT  -->
+<script>
+    (function (d, w, c) {
+        w.ViaOutOfStockPopupToken = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJob3N0bmFtZSI6InJlY3ljbGVka2FybWFicmFuZHMuY29tIiwibG9jYXRpb25JZCI6IjYwZDUwY2I3Y2JmZTk4MDAwNzNhODk5MSIsImlhdCI6MTYyNTA4NTM4NX0.cB-kUqTjhxYsHCITRp24IeOgVuSvOz-B2Q3jDIcdMxRjRazqkliOTKZxFUf-ItLgBBcJHyzYtY5rIQBjZY70WlQ6xV9slQIZDP-AJ7UCAMj0TYnjsSm84cIF2AobX1by0e6HJ7aRSgKXILFs2SmPNaMj2iWHh9eTQqg9Ts5-baM';
+        w.ViaStoreType = 'shopify';
+        var s = d.createElement('script');
+        w[c] = w[c] || function () {
+            (w[c].q = w[c].q || []).push(arguments);
+        };
+        s.async = true;
+        s.src = 'https://pg-out-of-stock-popup.viacustomers.com/via_out_of_stock_popup.js';
+        if (d.head) d.head.appendChild(s);
+    })(document, window, 'ViaOutOfStockPopup');
+</script>
+<!--  END VIA OUT OF STOCK SCRIPT  -->

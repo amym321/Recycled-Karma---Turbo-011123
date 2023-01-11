@@ -1,0 +1,22 @@
+<div class="ssw-instagram-feed-wrap container page-width">
+    <div class="section clearfix">
+      <div class="sixteen columns">
+
+        <div class="clearfix placeholder-instagram">
+          
+          
+          <div class="ssw-html-widget ssw-instagram-widget" data-module="service" data-instagram_ipp="{{section.settings.option_row}}" data-name="instagramPhotos" data-gallery_id="{{section.settings.option_galleries_id}}" data-type="{{section.settings.option_font}}">
+            <div class="ssw-page-loading">
+              <span class="ssw-spin ssw-loader"></span>
+            </div>
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+{% schema %}{"name":"Shoppable Instagram","class":"ssw-instagram-section","settings":[{"type":"select","id":"option_galleries_id","options":[{"value":"1","label":"Follow us on instagram @recycledkarmabrands"}],"label":"Choose gallery"},{"type":"select","id":"option_font","options":[{"value":"grid","label":"Grid"},{"value":"masonry","label":"Masonry"},{"value":"slide","label":"Slide"},{"value":"listing","label":"Listing"}],"label":"Choose gallery layout"},{"type":"select","id":"option_row","options":[{"value":"1","label":"1"},{"value":"2","label":"2"},{"value":"3","label":"3"},{"value":"4","label":"4"},{"value":"5","label":"5"}],"label":"Rows (Masonry layout)"}],"presets":[{"name":"Shoppable Instagram","category":"Image"}]}{% endschema %}
