@@ -270,13 +270,37 @@
       {% endif %}
 
       <ul class="menu right">
+        {% comment %} Search box moved to top bar - am {% endcomment %}
+        <li class="search_container" data-autocomplete-{{ settings.enable_autocomplete }}>
+          <form action="/search" class="search_form">
+            {% if settings.search_option != 'everything' %}
+              <input type="hidden" name="type" value="product" />
+            {% endif %}
+            <span class="icon-search search-submit"></span>
+            <input type="text" name="q" placeholder="{{ 'general.search.title' | t: shop_name: shop.name }}" value="{% if search and search.results.first.price %}{{ search.terms | replace: '*', '' }}{% endif %}" autocapitalize="off" autocomplete="off" autocorrect="off" />
+          </form>
+        </li>
+        {% if section.settings.search_enabled %}
+          <div class="dropdown_container center" data-dropdown="search">
+            <div class="dropdown" data-autocomplete-{{ settings.enable_autocomplete }}>
+              <form action="/search" class="header_search_form">
+                {% if settings.search_option != 'everything' %}
+                  <input type="hidden" name="type" value="product" />
+                {% endif %}
+                <span class="icon-search search-submit"></span>
+                <input type="text" name="q" placeholder="{{ 'general.search.title' | t: shop_name: shop.name }}" autocapitalize="off" autocomplete="off" autocorrect="off" class="search-terms" />
+              </form>
+            </div>
+          </div>
+        {% endif %}
+
         {% if settings.show_multiple_currencies %}
-          <li>
+          <li class="currency-link"> {% comment %} added class due to Search box in top bar - am{% endcomment %}
             {% include 'currencies-switcher' %}
           </li>
         {% endif %}
         {% if shop.customer_accounts_enabled %}
-          <li>
+          <li class="account-link"> {% comment %} added class due to Search box in top bar - am{% endcomment %}
             <a href="/account" class="icon-user" title="{{ 'layout.customer.my_account' | t }} {% if customer %}({{ customer.email }}){% endif %}"> <span>{% if customer %}{{ 'layout.customer.my_account' | t }}{% else %}{{ 'layout.customer.log_in' | t }}{% endif %}</span></a>
           </li>
         {% endif %}
@@ -317,18 +341,8 @@
             {% include 'menu' with section.settings.main_linklist2 %}
           {% endif %}
           {% if section.settings.search_enabled %}
-            <li class="search_container" data-autocomplete-{{ settings.enable_autocomplete }}>
-              <form action="/search" class="search_form">
-                {% if settings.search_option != 'everything' %}
-                  <input type="hidden" name="type" value="product" />
-                {% endif %}
-                <span class="icon-search search-submit"></span>
-                <input type="text" name="q" placeholder="{{ 'general.search.title' | t: shop_name: shop.name }}" value="{% if search and search.results.first.price %}{{ search.terms | replace: '*', '' }}{% endif %}" autocapitalize="off" autocomplete="off" autocorrect="off" />
-              </form>
-            </li>
-            <li class="search_link">
-              <a href="/search" class="icon-search dropdown_link" title="{{ 'general.search.title' | t | escape }}" data-dropdown-rel="search"></a>
-            </li>
+              {% comment %} Search box moved off of menu bar - am {% endcomment %}
+
           {% endif %}
         {% endcapture %}
 
@@ -354,17 +368,8 @@
           </div>
         {% endif %}
         {% if section.settings.search_enabled %}
-          <div class="dropdown_container center" data-dropdown="search">
-            <div class="dropdown" data-autocomplete-{{ settings.enable_autocomplete }}>
-              <form action="/search" class="header_search_form">
-                {% if settings.search_option != 'everything' %}
-                  <input type="hidden" name="type" value="product" />
-                {% endif %}
-                <span class="icon-search search-submit"></span>
-                <input type="text" name="q" placeholder="{{ 'general.search.title' | t: shop_name: shop.name }}" autocapitalize="off" autocomplete="off" autocorrect="off" class="search-terms" />
-              </form>
-            </div>
-          </div>
+          {% comment %} Search results moved off of menu bar - am {% endcomment %}
+
         {% endif %}
         {% include 'sub-menu' with section.settings.main_linklist %}
         {% include 'sub-menu' with section.settings.main_linklist2 %}

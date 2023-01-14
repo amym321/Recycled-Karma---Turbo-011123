@@ -11046,3 +11046,169 @@ $delay: 0;
    top: unset !important;
    bottom: 0 !important;
 } 
+
+
+/* added styles - am */
+
+/* Search Box */
+    /* .menu li.search_link {
+      display:inline-block;
+    } */
+.top_bar li.account-link,
+.top_bar li.currency-link {
+  float: right;
+  position: relative;
+}
+.menu li.search_container {
+  width: 10%;
+  padding-top:0;
+}
+.menu li.search_container:hover {
+  width: 50%;
+}
+
+.top_bar .search_form input,
+.top_bar .search_form input:active,
+.top_bar .search_form input:focus {
+  border-color: #ffffff00;
+}
+.top_bar .search_form:hover,
+.top_bar .search_form:active,
+.top_bar .search_form:focus {
+  border: 1px solid #000;
+}
+.top_bar .search__results {
+  width: 350px;
+  right: 0;
+  left: auto;
+  /* transform: translatey(144px); */
+  /* transform: translatey(65px); */
+}
+.top_bar .search__results-wrapper a{
+  padding: 15px 20px;
+  height: unset;
+  width: 100%;
+}
+.top_bar .search__results li:first-child {
+  border-top:1px solid #000;
+}
+.mini_cart {
+  height: 44px;
+}
+
+
+/* Cart Page images */
+#shopify-section-cart-template  #cart_form .five { 
+  width: calc(21.25% - 20px);
+}
+
+
+/* Quick view */
+.product-list .thumbnail .thumbnail-overlay {
+  background-color: #ffffff00;
+}
+.product-wrap .product_image .thumbnail-overlay .info {
+   transform: translateY(0%);
+   -webkit-transform: translateY(0%);
+   top: unset;
+   bottom: 20px;
+}
+.product-wrap .quick_shop {
+  background-color: #000000;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+}
+.product-wrap .quick_shop:hover {
+  background-color: #eec6f3;
+  border: 2px solid #000000;
+  color: #000000;
+}
+.quick_shop {
+  /* font-size: 16px; padding: 5px 10px; */
+}
+.quick-sizes {
+  font-size: 16px;
+  padding-top: 5px;
+  letter-spacing: 4px;
+  font-weight: 600;
+}
+
+
+/* Sale Page featured promos */
+@media screen and (min-width: 799px) {
+  .sale-tabs .promo-per-row-3,
+  .sale-tabs .promo-per-row-4,
+  .sale-tabs .promo-per-row-5 {
+    display: flex;
+    justify-content: center 
+  }
+}
+.sale-tabs.full-width--false .promo-per-row-2 .feature-section,
+.sale-tabs.full-width--false .promo-per-row-3 .feature-section,
+.sale-tabs.full-width--false .promo-per-row-4 .feature-section,
+.sale-tabs.full-width--false .promo-per-row-5 .feature-section {
+  display: flex;
+  justify-content: center;
+}
+@media screen and (max-width: 798px) {
+  .sale-tabs.full-width--false .promo-per-row-2 .feature-section,
+  .sale-tabs.full-width--false .promo-per-row-3 .feature-section,
+  .sale-tabs.full-width--false .promo-per-row-4 .feature-section,
+  .sale-tabs.full-width--false .promo-per-row-5 .feature-section {
+    width: calc(50% - 20px);
+  }
+}
+
+.sale-tabs .feature-inner  {
+  width: 170px;
+  height: 60px;
+}
+.sale-tabs .feature-section .feature-details {
+}
+
+.sale-tabs .feature-section .feature-box {
+  background-color: #000;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: block;
+}
+.sale-tabs .feature-section .title {
+  font-size:18px; 
+}
+
+.sale-tabs .feature-section:hover .feature-overlay,
+.sale-tabs .feature-section.title-overlay-true:hover .description {
+  background-color: #ffffff00;
+  background: #ffffff00;
+}
+.sale-tabs .feature-section.title-overlay-true .title,
+.sale-tabs .feature-section.title-overlay-true:hover .title,
+.sale-tabs .feature-section.title-overlay-true:hover .description  {
+  color: #fff !important;
+}
+.sale-tabs .feature-section.title-overlay-true .title:after {
+  color: #fff !important;
+  background: #000000 !important;
+}
+
+/* @media screen and (max-width: 798px) {
+  .sale-tabs.full-width--false .promo-per-row-3 .feature-section {
+    width: calc(33.3333% - 20px);  margin: 0 10px 10px;
+  }
+  .sale-tabs.full-width--false .promo-per-row-2 .feature-section,
+  .sale-tabs.full-width--false .promo-per-row-4 .feature-section {
+    width: calc(50% - 20px); margin: 0 10px 10px;
+  }
+  .sale-tabs.full-width--false .promo-per-row-2 .feature-section:nth-child(2n+1),
+  .sale-tabs.full-width--false .promo-per-row-2 .feature-section:nth-child(4n+1) {
+    clear:none;
+  }
+} */
+
+
+.hide {
+  display:none !important;
+  visibility: hidden  !important;
+  height: 0 !important;
+} 

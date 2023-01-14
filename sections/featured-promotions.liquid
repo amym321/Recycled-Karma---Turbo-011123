@@ -7,8 +7,38 @@
 {% assign featured_promos_per_row = section.settings.featured_promos_per_row | minus: 0 %}
 {% assign title_on_image = section.settings.promo_text_on_image_enabled %}
 
+{% comment %} breadcrumb on featured promo for Sale page - am {% endcomment %}
+{% if collection.title contains 'sale' or collection.title contains 'Sale' %}
+  <a name="pagecontent" id="pagecontent"></a>
+  <div class="container">
+    <div class="clearfix breadcrumb-collection">
+
+      <div class="eight columns breadcrumb_text medium-down--one-whole" itemscope itemtype="http://schema.org/BreadcrumbList">
+        <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="item" class="breadcrumb_link"><span itemprop="name">{{ 'general.breadcrumbs.home' | t }}</span></a><meta itemprop="position" content="1" /></span>
+        <span class="breadcrumb-divider">/</span>
+        <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}" title="{{ collection.title | escape }}" itemprop="item" class="breadcrumb_link"><span itemprop="name">{{ collection.title }}</span></a><meta itemprop="position" content="2" /></span>
+        {% if current_tags %}
+          {% for tag in current_tags %}
+
+            {% unless tag contains 'meta-' %}
+              <span class="breadcrumb-divider">/</span>
+              <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handleize }}" title="{{ tag | escape }}" itemprop="item"><span itemprop="name">{{ tag }}</span></a><meta itemprop="position" content="{{ forloop.index | plus: 2 }}" /></span>
+            {% endunless %}
+          {% endfor %}
+        {% endif %}
+
+        {% if paginate.pages != 0 and settings.pagination_type != 'load_more' and settings.pagination_type != 'infinite_scroll' %}
+          <span class="breadcrumb-divider">/</span> {{ 'general.breadcrumbs.page' | t: current_page: paginate.current_page, pages: paginate.pages }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+
 {% if section.blocks.size > 0 %}
-  <div class="featured-promotions container full-width--{{ section.settings.featured_promos_grid }}">
+  <div class="featured-promotions container full-width--{{ section.settings.featured_promos_grid }}
+      {% if collection.title contains 'sale' or collection.title contains 'Sale' %} sale-tabs {% endif %}">{% comment %} class for sales tabs on Sales page - am {% endcomment %}
     <div  class="js-featured-promotions promo-per-row-{{ featured_promos_per_row }} clearfix"
           data-promo-animation="{{ section.settings.featured_links_animation }}">
         {% for block in section.blocks %}
@@ -17,8 +47,13 @@
                 {% if block.settings.image != nil %}
                   {% include 'image-element', image: block.settings.image, alt: block.settings.image.alt, stretch_width: true %}
                 {% else %}
-                  {% capture i %}{% cycle "1", "2", "3", "4", "5", "6" %}{% endcapture %}
-                  {{ 'collection-' | append: i | placeholder_svg_tag: 'placeholder-svg placeholder-svg--promotions' }}
+                    {% comment %} add box on sale page if no image - am {% endcomment %}
+                  {% if collection.title contains 'sale' or collection.title contains 'Sale' %}
+                    <button class="feature-box"></button>
+                  {% else %}
+                    {% capture i %}{% cycle "1", "2", "3", "4", "5", "6" %}{% endcapture %}
+                    {{ 'collection-' | append: i | placeholder_svg_tag: 'placeholder-svg placeholder-svg--promotions' }}
+                  {% endif %}
                 {% endif %}
                 {% if block.settings.text != blank or block.settings.button_label != blank or block.settings.title != blank and title_on_image != blank %}
                   <figcaption class="feature-overlay">
@@ -27,7 +62,8 @@
                         {% if block.settings.title != blank %}
                           <h2 class="title">{{ block.settings.title }}</h2>
                         {% endif %}
-                        <div class="feature-details">
+                        {% comment %} details don't show on sales tab on sales page - am {% endcomment %}
+                        <div class="feature-details {% if block.settings.image == nil %} hide {% endif %}">
                           {% if block.settings.text != blank %}
                             <div class="description">{{ block.settings.text }}</div>
                           {% endif %}
@@ -55,18 +91,19 @@
   </div>
 {% endif %}
 
+{% comment %} reduced number of blocks - am {% endcomment %}
 {% schema %}
 {
   "name": "Featured promotions",
   "class": "featured-promotions-section",
-  "max_blocks": 12,
+  "max_blocks": 5,
   "settings": [
     {
       "type": "range",
       "id": "featured_promos_per_row",
       "label": "Promotions per row",
       "min": 2,
-      "max": 4,
+      "max": 5,
       "step": 1,
       "default": 3
     },

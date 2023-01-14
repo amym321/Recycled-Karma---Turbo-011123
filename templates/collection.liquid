@@ -2,5 +2,9 @@
   The contents of the collection.liquid template can be found in /sections/collection-template.liquid
 {% endcomment %}
 
+{% if collection.title contains 'sale' or collection.title contains 'Sale' %}
+  {% section 'featured-promotions' %} 
+{% endif  %}
+
 {% section 'collection-template' %}
 {% include 'viaPopups' %}

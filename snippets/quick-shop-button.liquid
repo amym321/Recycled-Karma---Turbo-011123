@@ -15,6 +15,18 @@
       data-collection-handles="{{ collection_handles | join: ','}}"
 >
   {{ 'collections.general.quick_shop' | t }}
+
+  {% comment %} add sizes to quick view button - am  {% endcomment %}
+  {% for product_option in product.options_with_values %}
+    {% if product_option.name == 'size' or product_option.name == 'Size' %}
+      <div class="quick-sizes">
+        {% for value in product_option.values %}
+          {{ value }}
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endfor %}
+
 </span>
 <div class="quickshop-forms__container js-quickshop-forms__container js-quickshop-forms--{{ product.id }}">
     {% unless collection_handles contains 'coming-soon' %}
